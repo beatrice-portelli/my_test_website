@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/all.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
+h1,h2,h3,h4,h5 {font-weight: bolder;}
+.w3-bar-block .w3-bar-item {padding: 16px}
+    
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #66c0b8;
+  border-radius: 10px;
+  opacity:0.3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #009688;
+}
+    
+    
+</style>
+<body>
+
+<!-- Side Navigation -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
+    
+    
+<!-- Top image -->
+<a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom w3-large"><img src="images/profile_picture.jpg" style="width:100%;"></a>
+    
+
+<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" 
+   class="w3-bar-item w3-button w3-hide-large w3-large"><i class="fa fa-times w3-margin-right"></i>Close</a>
+
+<a href="#" id="AboutMeButton" onclick="switch_content('AboutMeContent')" class="w3-bar-item w3-button w3-brown w3-opacity"><i class="fa fa-smile w3-margin-right fa-2x"></i>About me</a>
+
+<a id="PublicationsButton" onclick="switch_content('PublicationsContent');myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button w3-teal w3-opacity"><i class="fa fa-book-open w3-margin-right fa-2x"></i>Publications<i class="fa fa-caret-down w3-margin-left"></i></a>
+
+<div id="Demo1" class="w3-hide w3-animate-left">
+</div>
+    
+<a href="#" id="CVButton" onclick="switch_content('CVContent')" class="w3-bar-item w3-button w3-opacity w3-dark-gray"><i class="fa fa-address-card w3-margin-right fa-2x"></i>CV</a>
+    
+</nav>
+
+<!-- Overlay effect when opening the side navigation on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:320px;">
+<i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+    
+<div id="PublicationsContent" class="page-sub-content w3-margin">
+</div>
+
+<div id="AboutMeContent" class="page-sub-content w3-margin">
+<h1><b>About Me</b></h1>
+    
+<p>
+Beatrice Portelli is a graduate Research Fellow at the University of Udine, North-East of
+Italy. She works employing Deep Learning and Natural Language Processing techniques. Her
+current research interests include the study and development of Fact Verification Models and
+the automatic extraction of Adverse Drug Events from social media texts.
+</p>
+    
+</div>
+<div id="CVContent" class="page-sub-content w3-margin">
+<h1><b>Curriculum</b></h1>
+</div>
+
+     
+</div>
+
+<script>
+// var openInbox = document.getElementById("PublicationsButton");
+// openInbox.click();
+    
+function switch_content(id) {
+    
+    var ok_content = document.getElementById(id);
+    var i;
+    var all_contents = document.getElementsByClassName("page-sub-content");
+        
+    for (i=0; i<all_contents.length; i++) {
+        
+        var content = all_contents[i];
+        
+        content.style.display = "none";
+        
+        var button_id = content.id.replace("Content", "Button");
+        var button = document.getElementById(button_id);
+        if (button.className.indexOf("w3-opacity") == -1) {
+            button.className += " w3-opacity";
+        }
+    }
+    
+    ok_content.style.display = "block";
+    
+    var ok_button_id = ok_content.id.replace("Content", "Button");
+    var ok_button = document.getElementById(ok_button_id);
+    ok_button.className = ok_button.className.replace(" w3-opacity", "");
+    
+}
+
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+function myFunc(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show"; 
+//     x.previousElementSibling.className += " w3-teal";
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-opacity", "");
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+    x.previousElementSibling.className += " w3-opacity";
+//     x.previousElementSibling.className.replace(" w3-teal", "");
+    
+  }
+}
+
+/*openPaper("Borge")*/
+function openPaper(paperName) {
+  
+  var i;
+  var x = document.getElementsByClassName("paper");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x = document.getElementsByClassName("test");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" w3-light-grey", "");
+  }
+  document.getElementById(paperName).style.display = "block";
+  event.currentTarget.className += " w3-light-grey";
+  switch_content("PublicationsContent");
+}
+</script>
+
+
+
+<script type="text/javascript" src="publications.js"></script>
+<script>    
+    var mydata = PUBLICATIONS;
+    
+    for (i=0; i<mydata.length; i++) {
+        create_element(i,mydata[i]);
+    }
+    
+    
+function create_element(item_id, item) {
+    
+    var side_main = document.getElementById("Demo1");
+    var full_main = document.getElementById("PublicationsContent");
+    
+    
+    var side_id = "";
+    if (side_main.childElementCount == 0) {
+        side_id = 'id="firstTab"';
+    } else {
+        side_id = '';
+    }
+    
+    var div = document.createElement("div");
+    div.innerHTML = item.abstract;
+    var clean_text = div.textContent || div.innerText || "";
+    clean_text = clean_text.replace("\n", "").replace("\r", "")
+    
+    var side_html = `
+<a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey w3-padding-small" onclick="openPaper('`+item_id+`');w3_close(); "`+side_id+`>
+      <div class="w3-container">
+        <p style="margin-bottom: 0em">`+item.title+`</p>
+        <p class="w3-opacity fa-xs" style="margin-top: 0em">`+item.authors+`</p>
+      </div>
+    </a>`;
+    
+    var full_html = `
+<div id="`+item_id+`" class="w3-container paper">
+
+<div class="w3-dark-gray w3-container">
+<h3>`+item.title+`</h3>
+</div>
+
+
+<table class="w3-opacity" style="border-collapse: separate; border-spacing: 0; margin-top:1em">
+<colgroup>
+<col style="width:2em">
+</colgroup>
+
+<tr>
+<td style="text-align:center"><i class="fa fa-users"></i></td>
+<td>`+item.authors+`</td>
+</tr>
+
+<tr>
+<td style="text-align:center"><i class="fa fa-map-marker-alt"></i></td>
+<td>`+item.location+`</td>
+</tr>
+
+<tr>
+<td style="text-align:center"><i class="fa fa-clock"></i></td>
+<td>`+item.date+`</td>
+</tr>
+
+</table>
+
+<div style="text-align:center;">
+<img class="w3-round" src="`+item.image+`" style="width:80%; ">
+</div>
+
+
+<div class="w3-row-padding" style="padding-left:0; padding-right:0;">
+
+<div class="w3-col m7" style="padding-left:0;">
+<h4>Abstract</h4>
+<div class = "w3-light-gray w3-container w3-padding-16" >
+`+item.abstract+`
+</div>
+</div>
+
+<div class="w3-col m5">
+
+<h4>Link</h4>
+<a href="`+item.url+`" target="_blank">`+item.url+`</a> <i class="fa fa-external-link-alt"></i>
+
+<h4>Other resources</h4>
+`+item.other+`
+
+</div>
+
+</div>
+
+
+
+
+<h4>BibTex</h4>
+<div class="w3-code notranslate w3-border-teal w3-light-gray fa-xs">
+`+item.bibtex.trim().replaceAll("\n", "<br>")+`
+</div>
+
+</div>
+`;
+    side_main.insertAdjacentHTML('beforeend', side_html);
+    full_main.insertAdjacentHTML('beforeend', full_html);
+   
+}
+
+</script>
+    
+<script>
+var openTab = document.getElementById("firstTab");
+openTab.click();
+        
+// var publications = document.getElementById("PublicationsButton");
+// publications.click();
+document.getElementById("AboutMeButton").click();
+</script>
+    
+</body>
+</html> 
