@@ -11,28 +11,33 @@
 <link rel="stylesheet" href="css/all.min.css">
 <link rel="stylesheet" href="css/mystyle.css">
 
+<style id="more_style">
+
+</style>
 
 <body>
 
 <!-- Side Navigation -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card" style="z-index:3;width:250px;top:0px;transition: 0.5s;" id="mySidebar">
     
+<i class="fa fa-times w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_close()" style="position:absolute"></i>
+    
+<!-- <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu"  -->
+   <!-- class="w3-bar-item w3-button w3-hide-large w3-large"><i class="fa fa-times w3-margin-right"></i>Close</a> -->
     
 <!-- Top image -->
-<a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom w3-large"><img src="images/profile_picture.jpg" style="width:100%;"></a>
+<span class="w3-bar-item w3-border-bottom w3-large"><img src="images/profile_picture.jpg" style="width:217px;border-radius:0% 0% 0% 0%" ></span>
     
 
-<a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" 
-   class="w3-bar-item w3-button w3-hide-large w3-large"><i class="fa fa-times w3-margin-right"></i>Close</a>
 
-<a href="#" id="AboutMeButton" onclick="switch_content('AboutMeContent')" class="w3-bar-item w3-button w3-col-2"><i class="fa fa-smile w3-margin-right fa-2x"></i>About me</a>
+<a href="#" id="AboutMeButton" onclick="switch_content('AboutMeContent');w3_close();" class="w3-bar-item w3-button w3-2-col"><i class="fa fa-smile w3-margin-right fa-2x"></i>About me</a>
 
-<a id="PublicationsButton" onclick="switch_content('PublicationsContent');myFunc('PublicationsList')" href="javascript:void(0)" class="w3-bar-item w3-button w3-col-1"><i class="fa fa-book-open w3-margin-right fa-2x"></i>Publications<i class="fa fa-caret-down w3-margin-left"></i></a>
+<a id="PublicationsButton" onclick="switch_content('PublicationsContent');myFunc('PublicationsList')" href="javascript:void(0)" class="w3-bar-item w3-button w3-1-col"><i class="fa fa-book-open w3-margin-right fa-2x"></i>Publications<i class="fa fa-caret-down w3-margin-left"></i></a>
 
 <div id="PublicationsList" class="w3-hide w3-animate-left">
 </div>
     
-<a href="#" id="CVButton" onclick="switch_content('CVContent')" class="w3-bar-item w3-button w3-col-3"><i class="fa fa-address-card w3-margin-right fa-2x"></i>CV</a>
+<a href="#" id="CVButton" onclick="switch_content('CVContent');w3_close();" class="w3-bar-item w3-button w3-3-col"><i class="fa fa-address-card w3-margin-right fa-2x"></i>CV</a>
     
 </nav>
 
@@ -40,7 +45,7 @@
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
 
 <!-- Page content -->
-<div class="w3-main" style="margin-left:320px;">
+<div class="w3-main" style="margin-left:250px;">
 <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
     
 <div id="PublicationsContent" class="page-sub-content w3-margin">
@@ -67,24 +72,31 @@ the automatic extraction of Adverse Drug Events from social media texts.
 <script type="text/javascript" src="utils.js"></script>
 <script type="text/javascript" src="publications.js"></script>
 
-<script>    
+<script>
+
+init_colors();
+
+
+var sideButtons = document.getElementsByClassName("w3-bar-item");
+    
+<!-- for (i=0; i<sideButtons.length; i++) { -->
+    <!-- var item = sideButtons[i]; -->
+    <!-- var col = getStyle(item,"background-color"); -->
+    <!-- item.style.backgroundColor = col; -->
+    
+<!-- } -->
+
+w3_open();
+<!-- document.getElementById("PublicationsButton").click(); -->
 var mydata = PUBLICATIONS;
 
 for (i=0; i<mydata.length; i++) {
     create_element(i,mydata[i]);
 }
 
-var sideButtons = document.getElementsByClassName("w3-bar-item");
-    
-for (i=0; i<sideButtons.length; i++) {
-    var item = sideButtons[i];
-    console.log(item.id);
-    var col = getStyle(item,"background-color");
-    item.style.backgroundColor = col;
-    console.log("-------"+col);
-    console.log("-------"+item.style.backgroundColor);
-    
-}
+
+
+
     
 var openTab = document.getElementById("firstTab");
 openTab.click();

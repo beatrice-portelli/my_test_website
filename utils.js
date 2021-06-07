@@ -1,3 +1,31 @@
+function init_colors() {
+    
+    var colors = ["--col1", "--col2", "--col3"];
+    var kinds = [
+                    ["light", 60],
+                    ["dark", -30],
+                    ["xlight", 100],
+                    ["xdark", -100]
+                ];
+    var extra_css = document.getElementById("more_style");
+    
+    var template_css = `
+.w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:var(--colNUM-dark);background-color:var(--colNUM-KIND)!important}
+.w3-border-NUM-col-KIND,.w3-hover-border-NUM-col-KIND:hover{border-color:var(--colNUM-KIND)!important}`
+    
+    colors.forEach((item,index) => {
+        var col = getComputedStyle(document.body).getPropertyValue(item);
+        
+        kinds.forEach((kind,index) => {
+            document.documentElement.style.setProperty(item+"-"+kind[0], LightenDarkenColor(col, kind[1]));
+            extra_css.innerText = extra_css.innerText + template_css.replaceAll("KIND", kind[0]).replaceAll("NUM", item.replace("--col", ""));
+        }
+        );
+        
+    });
+    
+}
+
 function switch_content(id) {
     
     var ok_content = document.getElementById(id);
@@ -13,9 +41,10 @@ function switch_content(id) {
         var button_id = content.id.replace("Content", "Button");
         var button = document.getElementById(button_id);
                         
-        if (button.className.indexOf("lighter") == -1) {
-            button.className += " lighter";
-            LightenBg(button, 60);
+        if (button.className.indexOf("-light") == -1) {
+            button.className =
+            button.className.replace("-col", "-col-light");
+            // LightenBg(button, 60);
         }
     }
     
@@ -24,9 +53,10 @@ function switch_content(id) {
             if (x.className.indexOf("w3-show") != -1) {
                 x.className = x.className.replace(" w3-show", "");
 
-                if (x.previousElementSibling.className.indexOf("lighter") == -1) {
-                    x.previousElementSibling.className += " lighter";
-                    LightenBg(x.previousElementSibling, 60);
+                if (x.previousElementSibling.className.indexOf("-light") == -1) {
+                    x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace("-col", "-col-light");
+                    // LightenBg(x.previousElementSibling, 60);
                 }
         }
     }
@@ -35,18 +65,19 @@ function switch_content(id) {
     
     var ok_button_id = ok_content.id.replace("Content", "Button");
     var ok_button = document.getElementById(ok_button_id);
-    ok_button.className = ok_button.className.replace(" lighter", "");
-    DarkenBg(ok_button, 60);
+    ok_button.className = ok_button.className.replace("-col-light", "-col");
+    // DarkenBg(ok_button, 60);
 }
 
 function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
+  // document.getElementById("mySidebar").style.display = "block";
   document.getElementById("myOverlay").style.display = "block";
+  document.getElementById("mySidebar").style.left = "0px";
 }
 
 function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
   document.getElementById("myOverlay").style.display = "none";
+  document.getElementById("mySidebar").style.left = "-250px";
 }
 
 function myFunc(id) {
@@ -78,10 +109,10 @@ function openPaper(paperName) {
   }
   x = document.getElementsByClassName("test");
   for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" w3-light-grey", "");
+    x[i].className = x[i].className.replace(" w3-1-col-light", " w3-1-col-xlight");
   }
   document.getElementById(paperName).style.display = "block";
-  event.currentTarget.className += " w3-light-grey";
+  event.currentTarget.className = event.currentTarget.className.replace(" w3-1-col-xlight", " w3-1-col-light");
   switch_content("PublicationsContent");
 }
 
@@ -101,22 +132,41 @@ function create_element(item_id, item) {
     var div = document.createElement("div");
     div.innerHTML = item.abstract;
     var clean_text = div.textContent || div.innerText || "";
-    clean_text = clean_text.replace("\n", "").replace("\r", "")
+    clean_text = clean_text.replace("\n", "").replace("\r", "");
     
-    var title_color = getComputedStyle(document.body).getPropertyValue("--col1");
+    var author_list = item.authors.split(",");
+    var author_etal = author_list[0];
+    if (author_list.length > 1) {
+        author_etal = author_etal+","+author_list[1];
+        if (author_list.length > 2) {
+            author_etal = author_etal+" et al.";
+        }
+    }
     
     var side_html = `
-<a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey w3-padding-small" onclick="openPaper('`+item_id+`');w3_close(); "`+side_id+`>
-      <div class="w3-container">
-        <p style="margin-bottom: 0em">`+item.title+`</p>
-        <p class="w3-text-gray fa-xs" style="margin-top: 0em">`+item.authors+`</p>
-      </div>
-    </a>`;
+
+<a
+ href="javascript:void(0)"
+ class="w3-bar-item w3-button w3-border-bottom test w3-padding-small w3-1-col-xlight w3-hover-1-col-light"
+ onclick="openPaper('`+item_id+`');w3_close();
+ "`+side_id+`
+>
+<div class="w3-container" title="`+item.title+`">
+
+<p style="margin-bottom: 0em" class="short-text">`+item.title+`</p>
+
+<p class="w3-opacity fa-xs" style="margin-top: 0em">`+author_etal+`</p>
+
+</div>
+</a>
+
+
+`;
     
     var full_html = `
 <div id="`+item_id+`" class="w3-container paper">
 
-<div class="w3-container" style="color: #fff; background-color: `+LightenDarkenColor(title_color, 0)+`">
+<div class="w3-container w3-1-col" style="color: #fff; ">
 <h3>`+item.title+`</h3>
 </div>
 
@@ -173,7 +223,7 @@ function create_element(item_id, item) {
 
 
 <h4>BibTex</h4>
-<div class="w3-code notranslate w3-border-col-1 w3-light-gray fa-xs">
+<div class="w3-code notranslate w3-border-1-col w3-light-gray fa-xs">
 `+item.bibtex.trim().replaceAll("\n", "<br>")+`
 </div>
 
@@ -181,6 +231,17 @@ function create_element(item_id, item) {
 `;
     side_main.insertAdjacentHTML('beforeend', side_html);
     full_main.insertAdjacentHTML('beforeend', full_html);
+    
+    
+    // var span_elements = document.getElementById("PublicationsList").getElementsByTagName("span");
+// var a_elements = document.getElementById("PublicationsList").getElementsByTagName("a");
+// var last_hover_span = span_elements[span_elements.length-1];
+// var last_content_span = a_elements[a_elements.length-1];
+// console.log(last_content_span.clientHeight);
+// console.log(last_hover_span.clientHeight);
+// last_hover_span.style.height = last_content_span.clientHeight+"px";
+// console.log(last_hover_span.clientHeight);
+    
    
 }
 

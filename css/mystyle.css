@@ -1,7 +1,17 @@
 html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
 h1,h2,h3,h4,h5 {font-weight: bolder;}
 .w3-bar-block .w3-bar-item {padding: 16px}
-   
+
+@media (min-width:993px){#mySidebar{left:0px!important}}
+@media (max-width:992px){#mySidebar{display:block!important}}
+
+.short-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 ::-webkit-scrollbar {
   width: 15px;
   border-radius: 10px;
@@ -49,6 +59,8 @@ h1,h2,h3,h4,h5 {font-weight: bolder;}
   filter:brightness(50%);
 } */
 
+
+
 .lighter{}
 
 
@@ -61,11 +73,15 @@ html {
     --col3: #616161;
 }
 
-.w3-col-1,.w3-hover-col-1:hover{color:#fff;background-color:var(--col1)}
-.w3-border-col-1,.w3-hover-border-col-1:hover{border-color:var(--col1)}
+/* create dummy vars --col1-dark and then fill them via javascript! */
 
-.w3-col-2,.w3-hover-col-2:hover{color:#fff;background-color:var(--col2)}
-.w3-border-col-2,.w3-hover-border-col-2:hover{border-color:var(--col2)}
+.w3-1-col,.w3-hover-1-col:hover{color:#fff;background-color:var(--col1)}
+.w3-border-1-col,.w3-hover-border-1-col:hover{border-color:var(--col1)}
 
-.w3-col-3,.w3-hover-col-3:hover{color:#fff;background-color:var(--col3)}
-.w3-border-col-3,.w3-hover-border-col-3:hover{border-color:var(--col3)}
+
+.w3-2-col,.w3-hover-2-col:hover{color:#fff;background-color:var(--col2)}
+.w3-border-2-col,.w3-hover-border-2-col:hover{border-color:var(--col2)}
+
+
+.w3-3-col,.w3-hover-3-col:hover{color:#fff;background-color:var(--col3)}
+.w3-border-3-col,.w3-hover-border-3-col:hover{border-color:var(--col3)}
