@@ -17,6 +17,7 @@ function init_colors() {
         var col = getComputedStyle(document.body).getPropertyValue(item);
         
         kinds.forEach((kind,index) => {
+            console.log(item, kind[0]);
             document.documentElement.style.setProperty(item+"-"+kind[0], LightenDarkenColor(col, kind[1]));
             extra_css.innerText = extra_css.innerText + template_css.replaceAll("KIND", kind[0]).replaceAll("NUM", item.replace("--col", ""));
         }
@@ -194,7 +195,7 @@ function create_element(item_id, item) {
 </table>
 
 <div style="text-align:center;">
-<img class="w3-round" src="`+item.image+`" style="width:80%; ">
+<img class="w3-round" src="`+item.image+`" style="width:80%; max-width:500px;">
 </div>
 
 
@@ -318,6 +319,6 @@ function LightenDarkenColor(col, amt) {
     if (g > 255) g = 255;
     else if (g < 0) g = 0;
  
-    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+    return (usePound?"#":"") + (r==0?"00":"") + (g | (b << 8) | (r << 16)).toString(16);
   
 }
