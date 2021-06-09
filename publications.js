@@ -1,4 +1,4 @@
-PUBLICATIONS = [
+tmp_publications_js = [
     
     {
         "title": "Distilling the Evidence to Augment Fact Verification Models",

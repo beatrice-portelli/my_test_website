@@ -10,12 +10,17 @@
 <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/all.min.css">
 <link rel="stylesheet" href="css/mystyle.css">
+<script type="text/javascript" src="utils.js"></script>
 
 <style id="more_style">
 
 </style>
 
 <body>
+
+<script>
+init_colors();
+</script>
 
 <!-- Side Navigation -->
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card" style="z-index:3;width:250px;top:0px;transition: 0.5s;" id="mySidebar">
@@ -30,14 +35,23 @@
     
 
 
-<a href="#" id="AboutMeButton" onclick="switch_content('AboutMeContent');w3_close();" class="w3-bar-item w3-button w3-2-col"><i class="fa fa-smile w3-margin-right fa-2x"></i>About me</a>
+<a href="#" id="AboutMeButton" onclick="switch_content('AboutMeContent');w3_close();" class="w3-bar-item w3-button w3-2-col w3-hover-2-col-xlight"><i class="fa fa-smile w3-margin-right fa-2x"></i>About me</a>
 
-<a id="PublicationsButton" onclick="switch_content('PublicationsContent');myFunc('PublicationsList')" href="javascript:void(0)" class="w3-bar-item w3-button w3-1-col"><i class="fa fa-book-open w3-margin-right fa-2x"></i>Publications<i class="fa fa-caret-down w3-margin-left"></i></a>
+<a id="PublicationsButton" onclick="switch_content('PublicationsContent');myFunc('PublicationsList')" href="javascript:void(0)" class="w3-bar-item w3-button w3-1-col w3-hover-1-col-xlight"><i class="fa fa-book-open w3-margin-right fa-2x"></i>Publications<i class="fa fa-caret-down w3-margin-left"></i></a>
 
 <div id="PublicationsList" class="w3-hide w3-animate-left">
+<a
+ href="javascript:void(0)"
+ class="w3-bar-item w3-button w3-border-bottom test w3-padding-small w3-1-col-xlight w3-hover-1-col-light"
+ onclick="openPaper('paper_main');w3_close();" id='button_paper_main'>
+<div class="w3-container" title="All publications">
+
+<p>All publications</p>
+</div>
+</a>
 </div>
     
-<a href="#" id="CVButton" onclick="switch_content('CVContent');w3_close();" class="w3-bar-item w3-button w3-3-col"><i class="fa fa-address-card w3-margin-right fa-2x"></i>CV</a>
+<a href="#" id="CVButton" onclick="switch_content('CVContent');w3_close();" class="w3-bar-item w3-button w3-3-col w3-hover-3-col-xlight"><i class="fa fa-address-card w3-margin-right fa-2x"></i>CV</a>
     
 </nav>
 
@@ -47,59 +61,44 @@
 <!-- Page content -->
 <div class="w3-main" style="margin-left:250px;">
 <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
-    
-<div id="PublicationsContent" class="page-sub-content w3-margin">
-</div>
 
-<div id="AboutMeContent" class="page-sub-content w3-margin">
-<h1><b>About Me</b></h1>
-    
-<p>
-Beatrice Portelli is a graduate Research Fellow at the University of Udine, North-East of
-Italy. She works employing Deep Learning and Natural Language Processing techniques. Her
-current research interests include the study and development of Fact Verification Models and
-the automatic extraction of Adverse Drug Events from social media texts.
-</p>
-    
+
+<div id="PublicationsContent" class="page-sub-content w3-margin">
+<div id="paper_main" class="w3-container paper">
+
+<div class="w3-container w3-1-col" style="color: #fff; ">
+<h3>Publications</h3>
+
+<p>Browse publications using the side menu.</p>
 </div>
-<div id="CVContent" class="page-sub-content w3-margin">
-<h1><b>Curriculum</b></h1>
 </div>
+</div>
+<div id="AboutMeContent" class="page-sub-content w3-margin"></div>
+<div id="CVContent" class="page-sub-content w3-margin"></div>
 
      
 </div>
 
-<script type="text/javascript" src="utils.js"></script>
 <script type="text/javascript" src="publications.js"></script>
-
 <script>
 
-init_colors();
+/* about me content */
+loadAndProcessText("about_me.html", (text) =>
+document.getElementById("AboutMeContent").innerHTML = text
+);
 
+/* publications content */
+var publications = tmp_publications_js;
+publications.forEach((item, index) => {
+    create_element(index,item);
+});
 
-var sideButtons = document.getElementsByClassName("w3-bar-item");
-    
-<!-- for (i=0; i<sideButtons.length; i++) { -->
-    <!-- var item = sideButtons[i]; -->
-    <!-- var col = getStyle(item,"background-color"); -->
-    <!-- item.style.backgroundColor = col; -->
-    
-<!-- } -->
+/* cv content */
+loadAndProcessText("cv.html", (text) =>
+document.getElementById("CVContent").innerHTML = text
+);
 
-<!-- document.getElementById("PublicationsButton").click(); -->
-var mydata = PUBLICATIONS;
-
-for (i=0; i<mydata.length; i++) {
-    create_element(i,mydata[i]);
-}
-
-
-
-
-    
-var openTab = document.getElementById("firstTab");
-openTab.click();
-
+document.getElementById("button_paper_main").click();
 document.getElementById("AboutMeButton").click();
 w3_open();
 </script>

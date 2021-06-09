@@ -10,14 +10,13 @@ function init_colors() {
     var extra_css = document.getElementById("more_style");
     
     var template_css = `
-.w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:var(--colNUM-dark);background-color:var(--colNUM-KIND)!important}
+.w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:var(--colNUM-dark)!important;background-color:var(--colNUM-KIND)!important}
 .w3-border-NUM-col-KIND,.w3-hover-border-NUM-col-KIND:hover{border-color:var(--colNUM-KIND)!important}`
     
     colors.forEach((item,index) => {
         var col = getComputedStyle(document.body).getPropertyValue(item);
         
         kinds.forEach((kind,index) => {
-            console.log(item, kind[0]);
             document.documentElement.style.setProperty(item+"-"+kind[0], LightenDarkenColor(col, kind[1]));
             extra_css.innerText = extra_css.innerText + template_css.replaceAll("KIND", kind[0]).replaceAll("NUM", item.replace("--col", ""));
         }
@@ -26,6 +25,18 @@ function init_colors() {
     });
     
 }
+
+function loadAndProcessText(url, cb) {
+  fetch(url)
+    .then(response => response.text())
+    .then(result => cb(result));
+}
+function loadAndProcessJson(url, cb) {
+  fetch(url)
+    .then(response => response.json())
+    .then(result => cb(result));
+}
+
 
 function switch_content(id) {
     
@@ -84,7 +95,8 @@ function w3_close() {
 function myFunc(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show"; 
+    x.className += " w3-show";
+    // openPaper("paper_main");
       
     if (x.previousElementSibling.className.indexOf("lighter") != -1) {
         x.previousElementSibling.className =
@@ -112,12 +124,15 @@ function openPaper(paperName) {
   for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace(" w3-1-col-light", " w3-1-col-xlight");
   }
+  
   document.getElementById(paperName).style.display = "block";
   event.currentTarget.className = event.currentTarget.className.replace(" w3-1-col-xlight", " w3-1-col-light");
   switch_content("PublicationsContent");
 }
 
 function create_element(item_id, item) {
+    
+    item_id = "paper_"+item_id;
     
     var side_main = document.getElementById("PublicationsList");
     var full_main = document.getElementById("PublicationsContent");
@@ -219,8 +234,6 @@ function create_element(item_id, item) {
 </div>
 
 </div>
-
-
 
 
 <h4>BibTex</h4>
