@@ -5,13 +5,17 @@ function init_colors() {
                     ["light", 60],
                     ["dark", -30],
                     ["xlight", 100],
+                    ["xxlight", 120],
                     ["xdark", -100]
                 ];
     var extra_css = document.getElementById("more_style");
     
     var template_css = `
-.w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:var(--colNUM-dark)!important;background-color:var(--colNUM-KIND)!important}
+.w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:var(--colNUM-dark);background-color:var(--colNUM-KIND)!important}
 .w3-border-NUM-col-KIND,.w3-hover-border-NUM-col-KIND:hover{border-color:var(--colNUM-KIND)!important}`
+    // var template_css = `
+// .w3-NUM-col-KIND,.w3-hover-NUM-col-KIND:hover{color:#0009;background-color:var(--colNUM-KIND)!important}
+// .w3-border-NUM-col-KIND,.w3-hover-border-NUM-col-KIND:hover{border-color:var(--colNUM-KIND)!important}`
     
     colors.forEach((item,index) => {
         var col = getComputedStyle(document.body).getPropertyValue(item);
@@ -218,7 +222,7 @@ function create_element(item_id, item) {
 
 <div class="w3-col m7" style="padding-left:0;">
 <h4>Abstract</h4>
-<div class = "w3-light-gray w3-container w3-padding-16" >
+<div class = "w3-white w3-container w3-padding-16" >
 `+item.abstract+`
 </div>
 </div>
@@ -237,7 +241,7 @@ function create_element(item_id, item) {
 
 
 <h4>BibTex</h4>
-<div class="w3-code notranslate w3-border-1-col w3-light-gray fa-xs">
+<div class="w3-code notranslate w3-border-1-col w3-white fa-xs">
 `+item.bibtex.trim().replaceAll("\n", "<br>")+`
 </div>
 

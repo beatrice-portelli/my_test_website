@@ -1,5 +1,4 @@
 tmp_publications_js = [
-    
     {
         "title": "Distilling the Evidence to Augment Fact Verification Models",
         "authors": "<b>Beatrice Portelli</b>, Jason Zhao, Tal Schuster, Giuseppe Serra, Enrico Santus",
@@ -24,9 +23,9 @@ tmp_publications_js = [
     url = "https://www.aclweb.org/anthology/2020.fever-1.7",
     doi = "10.18653/v1/2020.fever-1.7",
 }`,
-    },
-    
-    {
+},
+
+{
         "title": "The COVID-19 Infodemic: Can the Crowd Judge Recent Misinformation Objectively?",
         "authors": "Kevin Roitero, Michael Soprano, <b>Beatrice Portelli</b>, Damiano Spina, Vincenzo Della Mea, Giuseppe Serra, Stefano Mizzaro, Gianluca Demartini",
         "image": "",
@@ -47,10 +46,10 @@ address = {New York, NY, USA},
 url = {https://doi.org/10.1145/3340531.3412048},
 booktitle = {Proceedings of the 29th ACM International Conference on Information & Knowledge Management},
 }
-`,
-    },
-    
-    {
+`
+},
+
+{
         "title": "Keyphrase Generation with GANs in Low-Resources Scenarios",
         "authors": "Giuseppe Lancioni, Saida S Mohamed, <b>Beatrice Portelli</b>, Giuseppe Serra, Carlo Tasso",
         "image": "",
@@ -74,19 +73,19 @@ booktitle = {Proceedings of the 29th ACM International Conference on Information
     url = "https://www.aclweb.org/anthology/2020.sustainlp-1.12",
     doi = "10.18653/v1/2020.sustainlp-1.12",
 }
-`,
-    },
-    
-    {
-        "title": "BERT Prescriptions to Avoid Unwanted Headaches: A Comparison of Transformer Architectures for Adverse Drug Event Detection",
-        "authors": "<b>Beatrice Portelli</b>, Edoardo Lenzi, Emmanuele Chersoni, Giuseppe Serra, Enrico Santus",
-        "image": "",
-        "location": "EACL 2021",
-        "abstract": `<p>Pretrained transformer-based models, such as BERT and its variants, have become a common choice to obtain state-of-the-art performances in NLP tasks. In the identification of Adverse Drug Events (ADE) from social media texts, for example, BERT architectures rank first in the leaderboard. However, a systematic comparison between these models has not yet been done. In this paper, we aim at shedding light on the differences between their performance analyzing the results of 12 models, tested on two standard benchmarks. SpanBERT and PubMedBERT emerged as the best models in our evaluation: this result clearly shows that span-based pretraining gives a decisive advantage in the precise recognition of ADEs, and that in-domain language pretraining is particularly useful when the transformer model is trained just on biomedical text from scratch.</p>`,
-        "url": "https://www.aclweb.org/anthology/2021.eacl-main.149",
-        "other": "",
-        "date": "April 2021",
-        "bibtex": `
+`
+},
+
+{
+"title": "BERT Prescriptions to Avoid Unwanted Headaches: A Comparison of Transformer Architectures for Adverse Drug Event Detection",
+"authors": "<b>Beatrice Portelli</b>, Edoardo Lenzi, Emmanuele Chersoni, Giuseppe Serra, Enrico Santus",
+"image": "",
+"location": "EACL 2021",
+"abstract": `<p>Pretrained transformer-based models, such as BERT and its variants, have become a common choice to obtain state-of-the-art performances in NLP tasks. In the identification of Adverse Drug Events (ADE) from social media texts, for example, BERT architectures rank first in the leaderboard. However, a systematic comparison between these models has not yet been done. In this paper, we aim at shedding light on the differences between their performance analyzing the results of 12 models, tested on two standard benchmarks. SpanBERT and PubMedBERT emerged as the best models in our evaluation: this result clearly shows that span-based pretraining gives a decisive advantage in the precise recognition of ADEs, and that in-domain language pretraining is particularly useful when the transformer model is trained just on biomedical text from scratch.</p>`,
+"url": "https://www.aclweb.org/anthology/2021.eacl-main.149",
+"other": "",
+"date": "April 2021",
+"bibtex": `
 @inproceedings{portelli-etal-2021-bert,
     title = "{BERT} Prescriptions to Avoid Unwanted Headaches: A Comparison of Transformer Architectures for Adverse Drug Event Detection",
     author = "Portelli, Beatrice  and
@@ -99,20 +98,23 @@ booktitle = {Proceedings of the 29th ACM International Conference on Information
     address = "Online",
     publisher = "Association for Computational Linguistics",
     url = "https://www.aclweb.org/anthology/2021.eacl-main.149",
-}
-`
-    },
-    
-    {
-        "title": "Improving Adverse Drug Event Extraction with SpanBERT on Different Text Typologies",
-        "authors": "<b>Beatrice Portelli</b>, Daniele Passabì, Edoardo Lenzi, Giuseppe Serra, Enrico Santus, Emmanuele Chersoni",
-        "image": "",
-        "location": "W3PHIAI-21 @ AAAI 2021",
-        "abstract": `<p>In recent years, Internet users are reporting Adverse Drug Events (ADE) on social media, blogs and health forums. Because of the large volume of reports, pharmacovigilance is seeking to resort to NLP to monitor these outlets. We propose for the first time the use of the SpanBERT architecture for the task of ADE extraction: this new version of the popular BERT transformer showed improved capabilities with multi-token text spans. We validate our hypothesis with experiments on two datasets (SMM4H and CADEC) with different text typologies (tweets and blog posts), finding that SpanBERT combined with a CRF outperforms all the competitors on both of them.</p>`,
-        "url": "https://arxiv.org/abs/2105.08882",
-        "other": "",
-        "date": "May 2021",
-        "bibtex": `
+}`
+},
+
+{
+"title": "Improving Adverse Drug Event Extraction with SpanBERT on Different Text Typologies",
+"authors": "<b>Beatrice Portelli</b>, Daniele Passabì, Edoardo Lenzi, Giuseppe Serra, Enrico Santus, Emmanuele Chersoni",
+"image": "",
+"location": "W3PHIAI-21 @ AAAI 2021",
+"abstract": `
+<p>
+In recent years, Internet users are reporting Adverse Drug Events (ADE) on social media, blogs and health forums. Because of the large volume of reports, pharmacovigilance is seeking to resort to NLP to monitor these outlets. We propose for the first time the use of the SpanBERT architecture for the task of ADE extraction: this new version of the popular BERT transformer showed improved capabilities with multi-token text spans. We validate our hypothesis with experiments on two datasets (SMM4H and CADEC) with different text typologies (tweets and blog posts), finding that SpanBERT combined with a CRF outperforms all the competitors on both of them.
+</p>
+`,
+"url": "https://arxiv.org/abs/2105.08882",
+"other": "",
+"date": "May 2021",
+"bibtex": `
 @misc{portelli2021improving,
       title={Improving Adverse Drug Event Extraction with SpanBERT on Different Text Typologies}, 
       author={Beatrice Portelli and Daniele Passabì and Edoardo Lenzi and Giuseppe Serra and Enrico Santus and Emmanuele Chersoni},
@@ -129,9 +131,8 @@ booktitle = {Proceedings of the 29th ACM International Conference on Information
       booktitle = "Proceedings of the 5th International Workshop on Health Intelligence (W3PHIAI-21)",
     year = "2021",
     address = "Online"
-}
-`,
-    },
+}`
+},
 
     
 ]
