@@ -92,6 +92,10 @@ loadAndProcessText("about_me.html", (text) =>
 document.getElementById("AboutMeContent").innerHTML = text
 );
 
+loadAndProcessText("plotly_test.html", (text) =>
+document.getElementById("PLOTLY_GRAPH").innerHTML = text
+);
+
 /* publications content */
 var publications = tmp_publications_js;
 publications.forEach((item, index) => {
