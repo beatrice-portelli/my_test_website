@@ -22,7 +22,7 @@ function init_colors() {
         
         kinds.forEach((kind,index) => {
             document.documentElement.style.setProperty(item+"-"+kind[0], LightenDarkenColor(col, kind[1]));
-            extra_css.innerText = extra_css.innerText + template_css.replaceAll("KIND", kind[0]).replaceAll("NUM", item.replace("--col", ""));
+            extra_css.innerText = extra_css.innerText + template_css.replace(/KIND/g, kind[0]).replace(/NUM/g, item.replace("--col", ""));
         }
         );
         
@@ -242,7 +242,7 @@ function create_element(item_id, item) {
 
 <h4>BibTex</h4>
 <div class="w3-code notranslate w3-border-1-col w3-white fa-xs">
-`+item.bibtex.trim().replaceAll("\n", "<br>")+`
+`+item.bibtex.trim().replace(/\n/g, "<br>")+`
 </div>
 
 </div>
